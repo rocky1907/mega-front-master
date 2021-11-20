@@ -1,0 +1,342 @@
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+      <!--  row gerente 4 -->
+      <div class="row d-flex" *ngIf="us == 'gerente_4'" >
+        <!-- Product details -->
+        <div class="col-md-4"  *ngFor="let item of freshproductList">
+          <div class="product-details">
+            <div class="product-preview">
+                <img alt="" src="./../../../assets/img/{{item[0]}}.jpg">
+            </div>
+            <input #descripcion id="descripcion{{item[0]}}" type="text" value="{{item[2]}}">
+            <div>
+              <div class="product-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <a class="review-link" href="#">10 Reseña (as) | Añadir tu reseña</a>
+            </div>
+            <div>
+              <h3 class="product-price">{{item[3]}} </h3>
+              <span class="product-available">En Stock</span>
+            </div>
+            <p>Peso de {{item[4]}} Kg</p>
+  
+  
+            <div class="add-to-cart">
+              <!--<div class="qty-label">
+                Qty
+                <div class="input-number">
+                  <input #quantity [max]="1000000" [min]="0"
+                         readonly type="number" value="0">
+                  <span (click)="Increase()" class="qty-up">+</span>
+                  <span (click)="Decrease()" class="qty-down">-</span>
+                </div>
+              </div>-->
+              <button (click)="actulizarproducto(item[0])" class="add-to-cart-btn"><i
+                class="fa fa-shopping-cart"></i>Confirmar cambio(os)
+              </button>
+            </div>
+  
+            <ul class="product-links">
+              <li>Categoria:</li>
+              <li><a>{{item[5]}}</a></li>
+            </ul>
+  
+            <ul class="product-links">
+              <li>Share:</li>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+  
+          </div>
+        </div>
+        <!-- /Product details -->
+      </div>
+      <!-- /row gerente 4 -->
+
+      <!-- row gerente 1 -->
+      <div class="row d-flex" *ngIf="us == 'gerente_1'" >
+        <!-- Product details -->
+        <div class="col-md-4"  *ngFor="let item of onlyabarrotesList">
+          <div class="product-details">
+            <div class="product-preview">
+                <img alt="" src="./../../../assets/img/{{item[0]}}.jpg">
+            </div>
+            <input #descripcion id="descripcion{{item[0]}}" type="text" value="{{item[1]}}">
+            <div>
+              <div class="product-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <a class="review-link" href="#">10 Reseña (as) | Añadir tu reseña</a>
+            </div>
+            <div>
+              <h3 class="product-price">{{item[2]}} </h3>
+              <span class="product-available">En Stock</span>
+            </div>
+  
+            <div class="add-to-cart">
+              <div class="qty-label">
+                Cantidad
+                <div class="input-number">
+                  <input #cantidad id="cantidad{{item[0]}}" type="number" value="{{item[3]}}">
+                </div>
+              </div>
+              <button (click)="actulizarproducto(item[0])" class="add-to-cart-btn"><i
+                class="fa fa-shopping-cart"></i>Confirmar cambio(os)
+              </button>
+            </div>
+  
+            <ul class="product-links">
+              <li>Categoria:</li>
+              <li><a>{{item[4]}}</a></li>
+            </ul>
+  
+            <ul class="product-links">
+              <li>Share:</li>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+  
+          </div>
+        </div>
+        <!-- /Product details -->
+      </div>
+      <!-- / row gerente 1  -->
+
+      <!-- row gerente 2 -->
+      <div class="row d-flex" *ngIf="us == 'gerente_2'" >
+        <!-- Product details -->
+        <div class="col-md-4"  *ngFor="let item of onlypersonalList">
+          <div class="product-details">
+            <div class="product-preview">
+                <img alt="" src="./../../../assets/img/{{item[0]}}.jpg">
+            </div>
+            <input #descripcion id="descripcion{{item[0]}}" type="text" value="{{item[1]}}">
+            <div>
+              <div class="product-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <a class="review-link" href="#">10 Reseña (as) | Añadir tu reseña</a>
+            </div>
+            <div>
+              <h3 class="product-price">{{item[2]}} </h3>
+              <span class="product-available">En Stock</span>
+            </div>
+  
+            <div class="add-to-cart">
+              <div class="qty-label">
+                Cantidad
+                <div class="input-number">
+                  <input #cantidad id="cantidad{{item[0]}}" type="number" value="{{item[3]}}">
+                </div>
+              </div>
+              <button (click)="actulizarproducto(item[0])" class="add-to-cart-btn"><i
+                class="fa fa-shopping-cart"></i>Confirmar cambio(os)
+              </button>
+            </div>
+  
+            <ul class="product-links">
+              <li>Categoria:</li>
+              <li><a>{{item[4]}}</a></li>
+            </ul>
+  
+            <ul class="product-links">
+              <li>Share:</li>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+  
+          </div>
+        </div>
+        <!-- /Product details -->
+      </div>
+      <!-- / row gerente 2  -->
+
+       <!-- row gerente 3 -->
+       <div class="row d-flex" *ngIf="us == 'gerente_3'" >
+        <!-- Product details -->
+        <div class="col-md-4"  *ngFor="let item of onlymercanciasList">
+          <div class="product-details">
+            <div class="product-preview">
+                <img alt="" src="./../../../assets/img/{{item[0]}}.jpg">
+            </div>
+            <input #descripcion id="descripcion{{item[0]}}" type="text" value="{{item[1]}}">
+            <div>
+              <div class="product-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <a class="review-link" href="#">10 Reseña (as) | Añadir tu reseña</a>
+            </div>
+            <div>
+              <h3 class="product-price">{{item[2]}} </h3>
+              <span class="product-available">En Stock</span>
+            </div>
+  
+            <div class="add-to-cart">
+              <div class="qty-label">
+                Cantidad
+                <div class="input-number">
+                  <input #cantidad id="cantidad{{item[0]}}" type="number" value="{{item[3]}}">
+                </div>
+              </div>
+              <button (click)="actulizarproducto(item[0])" class="add-to-cart-btn"><i
+                class="fa fa-shopping-cart"></i>Confirmar cambio(os)
+              </button>
+            </div>
+  
+            <ul class="product-links">
+              <li>Categoria:</li>
+              <li><a>{{item[4]}}</a></li>
+            </ul>
+  
+            <ul class="product-links">
+              <li>Share:</li>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+  
+          </div>
+        </div>
+        <!-- /Product details -->
+      </div>
+      <!-- / row gerente 3  -->
+
+       <!-- row gerentes generales -->
+       <div class="row d-flex" *ngIf="us == 'gerente_general_1' || us == 'gerente_general_2' || us == 'sistemas1' || us == 'sistemas2'" >
+        <!-- Product details -->
+        <div class="col-md-4"  *ngFor="let item of freshproductList">
+          <div class="product-details">
+            <div class="product-preview">
+                <img alt="" src="./../../../assets/img/{{item[0]}}.jpg">
+            </div>
+            <input #descripcion id="descripcion{{item[0]}}" type="text" value="{{item[2]}}">
+            <div>
+              <div class="product-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <a class="review-link" href="#">10 Reseña (as) | Añadir tu reseña</a>
+            </div>
+            <div>
+              <h3 class="product-price">{{item[3]}} </h3>
+              <span class="product-available">En Stock</span>
+            </div>
+            <p>Peso de {{item[4]}} Kg</p>
+  
+  
+            <div class="add-to-cart">
+              <!--<div class="qty-label">
+                Qty
+                <div class="input-number">
+                  <input #quantity [max]="1000000" [min]="0"
+                         readonly type="number" value="0">
+                  <span (click)="Increase()" class="qty-up">+</span>
+                  <span (click)="Decrease()" class="qty-down">-</span>
+                </div>
+              </div>-->
+              <button (click)="actulizarproductoGerenteGeneral(item[0])" class="add-to-cart-btn"><i
+                class="fa fa-shopping-cart"></i>Confirmar cambio(os)
+              </button>
+            </div>
+  
+            <ul class="product-links">
+              <li>Categoria:</li>
+              <li><a>{{item[5]}}</a></li>
+            </ul>
+  
+            <ul class="product-links">
+              <li>Share:</li>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+  
+          </div>
+        </div>
+        <!-- /Product details -->
+        <!-- Product details -->
+        <div class="col-md-4"  *ngFor="let item of otherproductList">
+          <div class="product-details">
+            <div class="product-preview">
+                <img alt="" src="./../../../assets/img/{{item[0]}}.jpg">
+            </div>
+            <input #descripcion id="descripcion{{item[0]}}" type="text" value="{{item[1]}}">
+            <div>
+              <div class="product-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <a class="review-link" href="#">10 Reseña (as) | Añadir tu reseña</a>
+            </div>
+            <div>
+              <h3 class="product-price">{{item[2]}} </h3>
+              <span class="product-available">En Stock</span>
+            </div>
+
+            <div class="add-to-cart">
+              <div class="qty-label">
+                Cantidad
+                <div class="input-number">
+                  <input #cantidad id="cantidad{{item[0]}}" type="number" value="{{item[3]}}">
+                </div>
+              </div>
+              <button (click)="actulizarproductoGerenteGeneral(item[0])" class="add-to-cart-btn"><i
+                class="fa fa-shopping-cart"></i>Confirmar cambio(os)
+              </button>
+            </div>
+
+            <ul class="product-links">
+              <li>Categoria:</li>
+              <li><a>{{item[4]}}</a></li>
+            </ul>
+
+            <ul class="product-links">
+              <li>Share:</li>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+
+          </div>
+        </div>
+        <!-- /Product details -->
+      </div>
+      <!-- / row gerentes generales  -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /SECTION -->

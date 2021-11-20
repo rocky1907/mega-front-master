@@ -1,123 +1,76 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {ProductService} from "../../services/product.service";
-import {ProductModelServer} from "../../models/product.model";
-import {map} from "rxjs/operators";
-import {CartService} from "../../services/cart.service";
-
-declare let $: any;
+import {Component, OnInit} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from 'src/app/services/products.service';
+import { AppService } from 'src/app/services/shared.service';
 
 @Component({
-  selector: 'mg-product',
+  selector: 'mg-products',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements AfterViewInit, OnInit {
-
-  id: Number;
-  product;
-  thumbimages: any[] = [];
-
-
-  @ViewChild('quantity') quantityInput;
-
-  constructor(private route: ActivatedRoute,
-              private productService: ProductService,
-              private cartService: CartService) {
-
-
+export class ProductosComponent implements OnInit {
+    public param : any;
+    public otherproductList: Array<any>=[];
+    public freshproductList: Array<any>=[];
+    public onlymercanciasList: Array<any>=[];
+    public onlyabarrotesList: Array<any>=[];
+    public onlypersonalList: Array<any>=[];
+    public resultado : Array<any>=[];
+  constructor(public servicePeti: ProductsService,private _route:ActivatedRoute,private appService: AppService) {
+    
   }
 
-  ngOnInit(): void {
-    this.route.paramMap.pipe(
-      map((param: ParamMap) => {
-        // @ts-ignore
-        return param.params.id;
-      })
-    ).subscribe(prodId => {
-      this.id = prodId;
-      this.productService.getSingleProduct(this.id).subscribe(prod => {
-        this.product = prod;
-        if (prod.images !== null) {
-          this.thumbimages = prod.images.split(';');
+  ngOnInit() {
+    this.param = this._route.children.pop().snapshot.params.name;
+    this.getOtherProductsss();
+  }
+
+  getOtherProductsss(){
+    this.servicePeti.getOtherProducts(this._route.snapshot.url.toString()).then(
+        (repos)=>{
+          this.otherproductList = repos;
+          this.otherproductList.forEach(element => {
+            if(element[4] == 'MERCANCIAS'){
+              this.onlymercanciasList.push(element);
+            }else{
+              if(element[4] == 'ABARROTES'){
+                this.onlyabarrotesList.push(element);
+              }else{
+                this.onlypersonalList.push(element);
+              }
+            }
+          });
+          this.getFreshProductss(); 
         }
-
-      });
-    });
+      );
   }
-
-  ngAfterViewInit(): void {
-
-    // Product Main img Slick
-    $('#product-main-img').slick({
-      infinite: true,
-      speed: 300,
-      dots: false,
-      arrows: true,
-      fade: true,
-      asNavFor: '#product-imgs',
-    });
-
-    // Product imgs Slick
-    $('#product-imgs').slick({
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      arrows: true,
-      centerMode: true,
-      focusOnSelect: true,
-      centerPadding: 0,
-      vertical: true,
-      asNavFor: '#product-main-img',
-      responsive: [{
-        breakpoint: 991,
-        settings: {
-          vertical: false,
-          arrows: false,
-          dots: true,
+  getFreshProductss(){
+    this.servicePeti.getFreshProducts(this._route.snapshot.url.toString()).then(
+        (repos)=>{
+          this.freshproductList = repos;
         }
-      },
-      ]
-    });
-
-    // Product img zoom
-    var zoomMainProduct = document.getElementById('product-main-img');
-    if (zoomMainProduct) {
-      $('#product-main-img .product-preview').zoom();
-    }
+      );
   }
-
-  addToCart(id: Number) {
-    this.cartService.AddProductToCart(id, this.quantityInput.nativeElement.value);
-  }
-
-  Increase() {
-    let value = parseInt(this.quantityInput.nativeElement.value);
-    if (this.product.quantity >= 1){
-      value++;
-
-      if (value > this.product.quantity) {
-        // @ts-ignore
-        value = this.product.quantity;
+  agregaralcarro(valor:any){
+    localStorage.removeItem("compra");
+    localStorage.removeItem("precios");
+    localStorage.clear();
+    this.appService.add(valor);
+    localStorage.setItem("compra",this.appService.getMyGV().toString());
+    
+    for (var i = 0; i < this.otherproductList.length; i++) {
+     
+      if (this.otherproductList[i][0] === valor) {
+        //console.log("Otros: "+this.otherproductList[i]);
+        this.resultado.push(this.otherproductList[i][2]);
       }
-    } else {
-      return;
     }
-
-    this.quantityInput.nativeElement.value = value.toString();
-  }
-
-  Decrease() {
-    let value = parseInt(this.quantityInput.nativeElement.value);
-    if (this.product.quantity > 0){
-      value--;
-
-      if (value <= 0) {
-        // @ts-ignore
-        value = 0;
+    for (var i = 0; i < this.freshproductList.length; i++) {
+      if (this.freshproductList[i][0] === valor) {
+        //console.log("fresco: "+this.freshproductList[i]);
+        this.resultado.push(this.freshproductList[i][3]);
       }
-    } else {
-      return;
     }
-    this.quantityInput.nativeElement.value = value.toString();
+    localStorage.setItem("precios",this.resultado.toString());
   }
 }

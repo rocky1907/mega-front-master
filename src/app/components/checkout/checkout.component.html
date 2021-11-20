@@ -8,7 +8,7 @@
   <p style="font-size: 20px; color: black">Booking Order...</p>
 </ngx-spinner>
 
-<div class="section" *ngIf="cartData.total > 0">
+<div class="section" *ngIf="total > 0">
 <!-- container -->
 <div class="container">
   <!-- row -->
@@ -111,26 +111,28 @@
     <!-- Order Details -->
     <div class="col-md-5 order-details">
       <div class="section-title text-center">
-        <h3 class="title">Your Order</h3>
+        <h3 class="title">Tu Compra</h3>
       </div>
       <div class="order-summary">
         <div class="order-col">
-          <div><strong>PRODUCT</strong></div>
+          <div><strong>PRODUCTO</strong></div>
           <div><strong>SubTotal</strong></div>
         </div>
         <div class="order-products">
-          <div class="order-col" *ngFor="let c of cartData.data;">
-            <div>{{c.numInCart}}x {{c.product.name}}</div>
-            <div>{{(c.product.price*c.numInCart) | currency:'USD'}}</div>
+          <div class="order-col" *ngFor="let c of totalList;">
+            <div *ngIf="c.length == 6 ">{{c[2]}}</div>
+            <div *ngIf="c.length == 5 ">{{c[1]}}</div>
+            <div *ngIf="c.length == 6 ">{{(c[3])}}</div>
+            <div *ngIf="c.length == 5 ">{{(c[2])}}</div>
           </div>
         </div>
         <div class="order-col">
-          <div>Shipping</div>
-          <div><strong>FREE</strong></div>
+          <div>Transporte </div>
+          <div><strong>GRATIS</strong></div>
         </div>
         <div class="order-col dropdown-divider">
           <div><strong>TOTAL</strong></div>
-          <div><strong class="order-total">{{cartTotal | currency:'USD'}}</strong></div>
+          <div><strong class="order-total">{{total}}</strong></div>
         </div>
       </div>
       <div class="payment-method">
@@ -138,30 +140,30 @@
           <input type="radio" name="payment" id="payment-1">
           <label for="payment-1">
             <span></span>
-            Direct Bank Transfer
+            Transferencia bancaria directa
           </label>
           <div class="caption">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>La transferencia bancaria directa, o Sistema de Compensación de Cuentas Bancarias (por sus siglas en Inglés, BACS), es una pasarela que no requiere que el pago se realice en línea. ... Es importante verificar que hayas recibido el pago antes de enviar un pedido y marcarlo como Procesando o Completado.</p>
           </div>
         </div>
         <div class="input-radio">
           <input type="radio" name="payment" id="payment-2">
           <label for="payment-2">
             <span></span>
-            Cheque Payment
+            Pago con cheque 
           </label>
           <div class="caption">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Un cheque es un título valor que contiene una orden de pago dirigida a un banco y a favor de una tercera persona, a su orden o al portador. El cheque es siempre pagadero “a la vista”- en el momento de su presentación- y cualquier fecha con que se le posdate se tendrá por no puesta.</p>
           </div>
         </div>
         <div class="input-radio">
           <input type="radio" name="payment" id="payment-3">
           <label for="payment-3">
             <span></span>
-            Paypal System
+            Pago en efectivo
           </label>
           <div class="caption">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Se cobraran los productos en su hogar</p>
           </div>
         </div>
       </div>
@@ -169,10 +171,10 @@
         <input type="checkbox" id="terms">
         <label for="terms">
           <span></span>
-          I've read and accept the <a href="#">terms & conditions</a>
+          He leído y acepto los <a href="#">términos & condiciones</a>
         </label>
       </div>
-      <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block" [disabled]="cartTotal <= 0 " (click)="onCheckout()">Place order</button>
+      <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block" [disabled]="total == 0 " (click)="onCheckout()">Realizar pedido</button>
     </div>
     <!-- /Order Details -->
   </div>
@@ -182,7 +184,7 @@
 </div>
 <!-- /SECTION -->
 
-<div class="text-center my-5" *ngIf="cartData.total <= 0">
-  <h4>Your Cart Is Empty</h4>
-  <button class="btn btn-primary btn-lg mt-3" routerLink="/">GO TO SHOP</button>
+<div class="text-center my-5" *ngIf="total == 0">
+  <h4>Tu carrito esta vacío </h4>
+  <button class="btn btn-primary btn-lg mt-3" routerLink="/">IR A LA TIENDA</button>
 </div>

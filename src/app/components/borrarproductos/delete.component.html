@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row col-md-12 col-md-offset-2 custyle">
+    <table class="table table-striped custab" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descipcion</th>
+            <th>Tipo</th>
+            <th class="text-center">Accion</th>
+        </tr>
+    </thead>
+            <tr *ngFor="let item of otherproductList">
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[4]}}</td>
+                <td class="text-center"><a (click)="delete(item[0])" style="background: rgb(209, 209, 47); border: black; color: black;" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            </tr>
+            <tr *ngFor="let item of freshproductList">
+                <td>{{item[0]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[5]}}</td>
+                <td class="text-center"><a (click)="delete(item[0])" style="background: rgb(209, 209, 47); border: black; color: black;" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            </tr>
+    </table>
+    </div>
+</div>

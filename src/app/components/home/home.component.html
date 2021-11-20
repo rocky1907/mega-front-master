@@ -12,7 +12,7 @@
           </div>
           <div class="shop-body">
             <h3>Abarrotes</h3>
-            <a href="#" class="cta-btn">Compra Ahora <i class="fa fa-arrow-circle-right"></i></a>
+            <a [routerLink]="['/productos/categoria/abarrotes']" class="cta-btn">Compra Ahora <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
           </div>
           <div class="shop-body">
             <h3>Cuidado <br>Personal</h3>
-            <a href="#" class="cta-btn">Compra Ahora <i class="fa fa-arrow-circle-right"></i></a>
+            <a [routerLink]="['/productos/categoria/personal']" class="cta-btn">Compra Ahora <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
           </div>
           <div class="shop-body">
             <h3>Frescos</h3>
-            <a href="#" class="cta-btn">Compra Ahora <i class="fa fa-arrow-circle-right"></i></a>
+            <a [routerLink]="['/productos/categoria/frescos']" class="cta-btn">Compra Ahora <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -52,7 +52,19 @@
           </div>
           <div class="shop-body">
             <h3>Mercancías</h3>
-            <a href="#" class="cta-btn">Compra Ahora <i class="fa fa-arrow-circle-right"></i></a>
+            <a [routerLink]="['/productos/categoria/mercancias']" class="cta-btn">Compra Ahora <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- /shop -->
+      <div class="col-md-4 col-xs-6">
+        <div class="shop">
+          <div class="shop-img">
+            <img src="./../../../assets/img/allsuper.jpg" alt="">
+          </div>
+          <div class="shop-body">
+            <h3>Ver Todo</h3>
+            <a [routerLink]="['/productos/categoria/todos']" class="cta-btn">Compra Ahora<i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -63,110 +75,6 @@
   <!-- /container -->
 </div>
 <!-- /SECTION -->
-
-<!-- SECTION -->
-<div class="section">
-  <!-- container -->
-  <div class="container">
-    <!-- row -->
-    <div class="row">
-
-      <!-- section title -->
-      <div class="col-md-12">
-        <div class="section-title">
-          <h3 class="title">Nuevos Productos</h3>
-        </div>
-      </div>
-      <!-- /section title -->
-
-      <!-- Products tab & slick -->
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-4 col-sm-6" *ngFor="let p of products">
-            <div class="card my-2">
-              <img [src]="p.image" alt="{{p.name}}" width="200px" class="card-img-top" (click)="selectProduct(p.id)" style="cursor:pointer;">
-              <div class="card-header">
-                <div class="card-title">
-                  <p>{{p.name | titlecase}}</p>
-                </div>
-              </div>
-              <div class="card-body">
-                <h6>{{p.description.substr(0, 40)}} ....</h6>
-                <p class="lead">{{p.price | currency:'USD'}}</p>
-              </div>
-
-              <div class="row d-flex justify-content-center border-primary my-3">
-                <div class="col-md-6 ">
-                  <button class="btn btn-outline-primary btn-sm btn-block"
-                          [class.disabled]="p.quantity < 1"
-                          [class.btn-outline-danger]="p.quantity < 1"
-                          (click)="AddProduct(p.id)" [disabled]="p.quantity < 1">
-                    {{ p.quantity < 1 ? "NO STOCK" : "Add To Cart"}}
-                  </button>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-</div>
-<!-- /container -->
-
-<!-- /SECTION -->
-
-<!-- HOT DEAL SECTION -->
-<div id="hot-deal" class="section">
-  <!-- container -->
-  <div class="container">
-    <!-- row -->
-    <div class="row">
-      <div class="col-md-12">
-        <div class="hot-deal">
-          <ul class="hot-deal-countdown">
-            <li>
-              <div>
-                <h3>02</h3>
-                <span>Days</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>10</h3>
-                <span>Hours</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>34</h3>
-                <span>Mins</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>60</h3>
-                <span>Secs</span>
-              </div>
-            </li>
-          </ul>
-          <h2 class="text-uppercase">hot deal this week</h2>
-          <p>New Collection Up to 50% OFF</p>
-          <a class="primary-btn cta-btn" href="#">Shop now</a>
-        </div>
-      </div>
-    </div>
-    <!-- /row -->
-  </div>
-  <!-- /container -->
-</div>
-<!-- /HOT DEAL SECTION -->
-
 
 <!-- NEWSLETTER -->
 <div id="newsletter" class="section">

@@ -1,0 +1,60 @@
+<button *ngIf="user.username == 'cajero1' || user.username == 'cajero2' || user.username == 'cajero3'" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Escoja la caja en la que va a trabajar
+</button>
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="box">
+                    <h1>Login</h1>
+                    <p class="text-muted"> Please enter your login and password!</p>
+                    <input type="text" formControlName="Username" placeholder="Username" class="form-control">
+                    <input type="password" formControlName="Password" placeholder="Password" class="form-control">
+                    <a class="forgot text-muted" href="#">Forgot password?</a>
+                    <input [disabled]="loginForm.invalid" type="submit" name="" value="Login" href="#">
+                    <div class="col-md-12">
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="fa fa-google" aria-hidden="true" class="icoGoogle" title="Google
+                                        +"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>      
+      <!-- The Modal -->
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Seleccion de Caja</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+                <button  data-dismiss="modal" type="button" class="newsletter-btn" style="margin-left: 15%;" (click)="escogeCaja('caja1')" [routerLink]="[ '']">
+                    CAJA1
+                  </button>
+                  <button data-dismiss="modal" type="button" class="newsletter-btn" style="margin-left: 15%;" (click)="escogeCaja('caja2')" [routerLink]="[ '']">
+                    CAJA2
+                  </button>
+                  <button data-dismiss="modal" type="button" class="newsletter-btn" style="margin-left: 15%;" (click)="escogeCaja('caja3')" [routerLink]="[ '']">
+                    CAJA3
+                  </button>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      

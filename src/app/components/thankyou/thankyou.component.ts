@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {OrderService} from "../../services/order.service";
 
 @Component({
   selector: 'mg-thankyou',
@@ -13,7 +12,7 @@ export class ThankyouComponent implements OnInit {
   products;
   cartTotal;
   constructor(private router: Router,
-              private orderService: OrderService) {
+              ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation.extras.state as {
       message: String,

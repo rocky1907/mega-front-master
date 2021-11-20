@@ -8,15 +8,19 @@ import {FooterComponent} from './components/footer/footer.component';
 import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
-import {CartComponent} from './components/cart/cart.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {HttpClientModule} from "@angular/common/http";
-import {ProductComponent} from './components/product/product.component';
 import {ThankyouComponent} from './components/thankyou/thankyou.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastrModule} from 'ngx-toastr';
+import { ProductosComponent } from './components/product/product.component';
+import { AppService } from './services/shared.service';
+import { EditComponent } from './components/edit/edit.component';
+import { AddComponent } from './components/addproduct/add.component';
+import { DeleteComponent } from './components/borrarproductos/delete.component';
+import { BitacoraComponent } from './components/bitacora/bitacora.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +30,13 @@ import {ToastrModule} from 'ngx-toastr';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    CartComponent,
     CheckoutComponent,
-    ProductComponent,
-    ThankyouComponent
+    ProductosComponent,
+    ThankyouComponent,
+    EditComponent,
+    AddComponent,
+    DeleteComponent,
+    BitacoraComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,7 @@ import {ToastrModule} from 'ngx-toastr';
     ToastrModule.forRoot()
 
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
